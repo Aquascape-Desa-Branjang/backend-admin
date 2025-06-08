@@ -1,0 +1,143 @@
+// Global
+    .sr-hidden {
+        @apply invisible;
+    }
+
+    .btn {
+        @apply font-sans px-4 py-3 rounded-[3.75rem] flex flex-row gap-1 xl:gap-2 items-center justify-center text-base w-fit outline-none border-0 cursor-pointer hover:brightness-110 transition-all duration-200 ease-in-out xl:text-xl;
+
+        img,
+        svg {
+            @apply w-5 h-5 xl:w-6 xl:h-6;
+        }
+
+        &--primary {
+            @apply bg-primary text-white;
+
+            &__reverse {
+                @apply font-semibold bg-white text-primary hover:brightness-90;
+            }
+        }
+
+        &--secondary{
+            @apply bg-misc-2 text-white font-normal leading-normal hover:bg-white hover:text-primary hover:font-semibold text-center text-base xl:text-xl;
+        }
+    }
+
+    .slider-button{
+        // Home
+        &__home{
+            .disabled{
+                @apply opacity-0 cursor-default;
+            }
+        }
+
+        // About
+        &__about{
+            .disabled{
+                @apply opacity-50 cursor-default;
+            }
+        }
+    }
+
+    .accordion {
+        .content {
+            @apply max-h-0 transition-[max-height] duration-200;
+        }
+
+        .toggle:checked {
+            // Where accordion title not any class no remove radius
+            & + .accordion-title:not(.no-remove-radius) {
+                @apply rounded-bl-none rounded-br-none;
+            }
+
+            & + .accordion-title + .content div:not(.no-remove-radius) {
+                @apply rounded-tl-none rounded-tr-none;
+            }
+
+            & + .accordion-title,
+            & + .accordion-title + .content {
+                @apply max-h-[99999999999px];
+            }
+
+            & + .accordion-title .chevron {
+                @apply rotate-180;
+            }
+        }
+    }
+
+// Navigation
+    nav {
+        .navigation {
+        @apply no-underline text-lg leading-normal font-normal text-secondary hover:text-primary;
+
+        &.active {
+            @apply text-primary font-semibold;
+        }
+        }
+    }
+
+// Home
+    // Hero
+    #section-hero {
+        .divider {
+            @apply w-[1px] h-[60px] bg-quaternary hidden md:block;
+        }
+
+        .gradient-overlay {
+            @apply absolute top-0 left-0 w-full h-full z-0 bg-gradient-to-t from-black/80 to-transparent;
+        }
+    }
+
+    // Services
+    #section-our-services {
+        .services-content {
+            @apply hidden w-full h-full;
+        }
+    }
+
+    #section-our-services .services-content.active {
+        @apply grid;
+    }
+
+// Contact
+    .contact-form {
+        .form-group {
+            input,
+            textarea {
+                @apply font-sans block p-3 w-full text-base text-secondary bg-transparent border-0 border-b border-quaternary appearance-none focus:outline-none focus:ring-0 focus:border-primary xl:text-xl;
+            }
+
+            label {
+                @apply absolute text-base text-secondary duration-100 transform scale-75 bottom-3 -z-10 origin-[0] -translate-y-8 xl:text-xl;
+            }
+
+            .label-text-area {
+                @apply -translate-y-10 xl:-translate-y-10;
+            }
+        }
+    }
+
+    .contact-item {
+        @apply flex flex-col gap-2 text-quaternary;
+
+        .label {
+            @apply font-medium text-sm leading-normal tracking-normal xl:text-base;
+        }
+
+        .value {
+            @apply font-semibold text-base leading-normal tracking-normal text-quaternary xl:text-lg;
+        }
+    }
+
+// Career
+    .filter-field{
+        select, input{
+            @apply appearance-none ps-4 pe-12 py-2 font-normal leading-normal bg-white placeholder:text-misc-5 text-tertiary rounded-lg border-none focus:outline-none focus:ring focus:ring-1 focus:ring-primary text-lg xl:text-xl;
+
+            &.field-icon-left{
+                @apply ps-12 pe-4;
+            }
+        }
+    }
+

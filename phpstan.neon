@@ -1,0 +1,25 @@
+includes:
+  - ./vendor/larastan/larastan/extension.neon
+
+parameters:
+  paths:
+    - app
+    - config
+    - database
+    - lang
+    - packages
+    - resources/views
+    - routes
+  excludePaths:
+  level: 7 # https://phpstan.org/user-guide/rule-levels
+  checkMissingIterableValueType: false
+  checkGenericClassInNonGenericObjectType: false
+  treatPhpDocTypesAsCertain: false
+  ignoreErrors:
+    - '#Access to an undefined property (.*)Model(.*)#'
+    - '#Function user\(\) (should|never) return#'
+    - '#Function filament_user(.*) can be removed from the return type#'
+    - '#Method (.*) should return string\|null but returns array\|string\|null#'
+    - '#Method (.*)(read|unread)Notifications(.*) should return (.*)Builder#'
+    - '#Unable to resolve the template type TKey in call to function collect#'
+    - '#Unable to resolve the template type TValue in call to function collect#'

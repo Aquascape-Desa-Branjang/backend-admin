@@ -1,0 +1,10 @@
+<x-layouts.app
+  subtitle=""
+  description=""
+  author=""
+  keywords=""
+  cover_path=""
+>
+    <x-career.section-hero/>
+    <x-career.section-accordion/>
+</x-layouts.app>

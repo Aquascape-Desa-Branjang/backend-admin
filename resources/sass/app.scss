@@ -1,0 +1,11 @@
+
+@import "variables";
+@import "base";
+@import "layouts";
+@import "modules";
+
+@config './../js/app-tailwind.tailwind.config.js';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

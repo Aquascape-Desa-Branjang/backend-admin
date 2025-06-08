@@ -1,0 +1,22 @@
+{
+  "resources/css/filament-base-theme.css": {
+    "file": "assets/filament-base-theme-_PLKp3Fa.css",
+    "isEntry": true,
+    "src": "resources/css/filament-base-theme.css"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-jy4hK6vf.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/js/filament-base-theme.js": {
+    "file": "assets/filament-base-theme-6WBXICza.js",
+    "isEntry": true,
+    "src": "resources/js/filament-base-theme.js"
+  },
+  "resources/sass/app.scss": {
+    "file": "assets/app-LlSwG57H.css",
+    "isEntry": true,
+    "src": "resources/sass/app.scss"
+  }
+}

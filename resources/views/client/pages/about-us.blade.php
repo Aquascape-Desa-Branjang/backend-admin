@@ -1,0 +1,20 @@
+<x-layouts.app>
+    <x-about-us.section-carousel/>
+    <x-about-us.section-about
+        :imageTitle="setting_file('content.about-us_s2_image_title')"
+        :imageDescription="setting_file('content.about-us_s2_image_description')"
+        :title="setting('content.about-us_s2_title')"
+        :subtitle="setting('content.about-us_s2_subtitle')"
+        :description="setting('content.about-us_s2_description')"
+        :button="false"
+    />
+    <x-about-us.section-our-goals/>
+    <x-about-us.section-our-values/>
+    <x-about-us.section-our-gallery/>
+    <x-about-us.section-contact-us
+        :backgroundImage="setting_file('content.about-us_s6_background_image')"
+        :title="setting('content.about-us_s6_title')"
+        :buttonText="setting('content.about-us_s6_button_text')"
+        :buttonIcon="setting_file('content.about-us_s6_button_icon')"
+    />
+</x-layouts.app>
