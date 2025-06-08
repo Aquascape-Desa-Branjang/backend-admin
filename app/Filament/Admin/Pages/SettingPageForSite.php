@@ -31,22 +31,22 @@ class SettingPageForSite extends SettingPage
                 ->isActiveWhen(fn () => static::class == SettingPageForSite::class),
             NavigationGroup::make(__('admin.sites'))
                 ->items([
-                    NavigationItem::make(__('admin.navbar'))
-                        ->icon('heroicon-o-cursor-arrow-ripple')
-                        ->url(SettingPageForSiteNavbar::getUrl())
-                        ->isActiveWhen(fn () => static::class == SettingPageForSiteNavbar::class),
-                    NavigationItem::make(__('admin.footer'))
-                        ->icon('heroicon-o-rectangle-group')
-                        ->url(SettingPageForSiteFooter::getUrl())
-                        ->isActiveWhen(fn () => static::class == SettingPageForSiteFooter::class),
-                    // NavigationItem::make(__('admin.background'))
-                    //     ->icon('heroicon-o-gif')
-                    //     ->url(SettingPageForSiteBackground::getUrl())
-                    //     ->isActiveWhen(fn () => static::class == SettingPageForSiteBackground::class),
-                    NavigationItem::make(__('admin.SEO'))
-                        ->icon('heroicon-o-cube-transparent')
-                        ->url(SettingPageForSiteSeo::getUrl())
-                        ->isActiveWhen(fn () => static::class == SettingPageForSiteSeo::class),
+                    // NavigationItem::make(__('admin.navbar'))
+                    //     ->icon('heroicon-o-cursor-arrow-ripple')
+                    //     ->url(SettingPageForSiteNavbar::getUrl())
+                    //     ->isActiveWhen(fn () => static::class == SettingPageForSiteNavbar::class),
+                    // NavigationItem::make(__('admin.footer'))
+                    //     ->icon('heroicon-o-rectangle-group')
+                    //     ->url(SettingPageForSiteFooter::getUrl())
+                    //     ->isActiveWhen(fn () => static::class == SettingPageForSiteFooter::class),
+                    // // NavigationItem::make(__('admin.background'))
+                    // //     ->icon('heroicon-o-gif')
+                    // //     ->url(SettingPageForSiteBackground::getUrl())
+                    // //     ->isActiveWhen(fn () => static::class == SettingPageForSiteBackground::class),
+                    // NavigationItem::make(__('admin.SEO'))
+                    //     ->icon('heroicon-o-cube-transparent')
+                    //     ->url(SettingPageForSiteSeo::getUrl())
+                    //     ->isActiveWhen(fn () => static::class == SettingPageForSiteSeo::class),
                     // NavigationItem::make(__('admin.others'))
                     //     ->icon('heroicon-o-megaphone')
                     //     ->url(SettingPageForSiteOther::getUrl())

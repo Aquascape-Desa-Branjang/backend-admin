@@ -18,8 +18,7 @@ class AdminFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'phone' => fake()->e164PhoneNumber(),
-            // 'password' => '$2y$12$LCzumewG/xxSmvWEomLR8OdvXHghG5ffNX2Vc0zqBarQGV2JnndMC', // password
-            'password' => Hash::make('password'),
+            'password' => Hash::make('rahasia123'),
             'password_updated_at' => null,
             'remember_token' => Str::random(10),
             'is_active' => true,

@@ -33,7 +33,7 @@ class AdminPanelProvider extends PanelProvider
             // ->profile()
             ->authGuard('admin')
             // ->databaseNotifications()
-            ->colors(['primary' => '#034E79'])
+            ->colors(['primary' => '#004488'])
             ->discoverResources(
                 in: app_path('Filament/Admin/Resources'),
                 for: 'App\\Filament\\Admin\\Resources',

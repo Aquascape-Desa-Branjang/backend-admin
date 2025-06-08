@@ -11,7 +11,7 @@ class SettingDatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $groups = ['app', 'content', 'site'];
+        $groups = ['app', 'site'];
         array_walk($groups, fn ($g) => $this->loadAndSaveSetting($g));
     }
 

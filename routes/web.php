@@ -11,50 +11,47 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::controller(Web\MiscWebController::class)->group(function () {
-    Route::get('/', 'home')->name('home');
-    Route::get('/about-us', 'about')->name('about-us');
-    Route::get('/our-services', 'ourServices')->name('our-services');
-    Route::get('/legal/{type}', 'legal')->name('legal');
-});
+// Route::controller(Web\MiscWebController::class)->group(function () {
+//     Route::get('/', 'home')->name('home');
+//     Route::get('/about-us', 'about')->name('about-us');
+//     Route::get('/our-services', 'ourServices')->name('our-services');
+//     Route::get('/legal/{type}', 'legal')->name('legal');
+// });
 
-Route::controller(Web\CareerController::class)->group(function () {
-    Route::get('/career', 'index')->name('career.index');
-});
+// Route::controller(Web\CareerController::class)->group(function () {
+//     Route::get('/career', 'index')->name('career.index');
+// });
 
-Route::controller(Web\EProcurementController::class)->group(function () {
-    Route::get('/e-procurement', 'index')->name('e-procurement.index');
-});
+// Route::controller(Web\EProcurementController::class)->group(function () {
+//     Route::get('/e-procurement', 'index')->name('e-procurement.index');
+// });
 
-Route::controller(Web\ContactController::class)->group(function () {
-    Route::get('/contact', 'index')->name('contact.index');
-    Route::post('/contact/submit', 'submit')->name('contact.submit');
-});
+// Route::controller(Web\ContactController::class)->group(function () {
+//     Route::get('/contact', 'index')->name('contact.index');
+//     Route::post('/contact/submit', 'submit')->name('contact.submit');
+// });
 
-Route::get('/login', fn () => redirect('auth.login'))
-    ->name('login');
+// Route::get('/login', fn () => redirect('auth.login'))
+//     ->name('login');
 
-Route::prefix('')->name('auth.')->group(function () {
-    Route::get('/logout', [Web\AuthenticationController::class, 'logout'])
-        ->name('logout');
+// Route::prefix('')->name('auth.')->group(function () {
+//     Route::get('/logout', [Web\AuthenticationController::class, 'logout'])
+//         ->name('logout');
 
-    // Route::get('/verify/email/{token}', [Web\AuthenticationController::class, 'verifyEmail'])
-    //     ->name('verify.email');
+//     Route::middleware('guest')->group(function () {
+//         Route::get('/login', [Web\AuthenticationController::class, 'login'])
+//             ->name('login');
 
-    Route::middleware('guest')->group(function () {
-        Route::get('/login', [Web\AuthenticationController::class, 'login'])
-            ->name('login');
+//         Route::get('/register', [Web\AuthenticationController::class, 'register'])
+//             ->name('register');
 
-        Route::get('/register', [Web\AuthenticationController::class, 'register'])
-            ->name('register');
+//         Route::get('/forgot-password', [Web\AuthenticationController::class, 'forgotPassword'])
+//             ->name('forgot-password');
 
-        Route::get('/forgot-password', [Web\AuthenticationController::class, 'forgotPassword'])
-            ->name('forgot-password');
-
-        Route::get('/reset-password/{token}', [Web\AuthenticationController::class, 'resetPassword'])
-            ->name('reset-password');
-    });
-});
+//         Route::get('/reset-password/{token}', [Web\AuthenticationController::class, 'resetPassword'])
+//             ->name('reset-password');
+//     });
+// });
 
 /*
 |--------------------------------------------------------------------------

@@ -33,9 +33,9 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'superadmin_email' => 'super@decodes.com',
+    'superadmin_email' => 'super@admin.com',
 
-    'admin_email' => 'admin@decodes.com',
+    'admin_email' => 'admin@admin.com',
 
     'permissions' => [
         'guard:admin' => [

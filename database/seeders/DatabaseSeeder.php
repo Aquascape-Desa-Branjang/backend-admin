@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
 
         activity()->disableLogging();
 
-        $this->call(Base\TranslationDatabaseSeeder::class);
+        // $this->call(Base\TranslationDatabaseSeeder::class);
         $this->call(Base\SettingDatabaseSeeder::class);
         $this->call(Base\PermissionDatabaseSeeder::class);
         $this->call(Base\RoleDatabaseSeeder::class);
