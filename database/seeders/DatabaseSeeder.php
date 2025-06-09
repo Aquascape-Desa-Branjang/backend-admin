@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(Base\RoleDatabaseSeeder::class);
         $this->call(Main\AdminDatabaseSeeder::class);
         $this->call(Main\MasterDatabaseSeeder::class);
+        $this->call(ProductSeeder::class);
 
         activity()->enableLogging();
 
