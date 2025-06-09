@@ -4,62 +4,63 @@ namespace App\Http\Controllers;
 
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class ProductCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(): View
     {
-        //
+        $categories = ProductCategory::orderBy('order')->get();
+
+        return view('product_categories.index', compact('categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('product_categories.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            'order' => ['required', 'integer'],
+            'name' => ['required', 'string', 'max:255'],
+            'slug' => ['required', 'string', 'max:255', 'unique:product_categories,slug'],
+        ]);
+
+        ProductCategory::create($validated);
+
+        return redirect()->route('product-categories.index')->with('success', 'Kategori berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ProductCategory $productCategory)
+    public function show(ProductCategory $productCategory): View
     {
-        //
+        return view('product_categories.show', compact('productCategory'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ProductCategory $productCategory)
+    public function edit(ProductCategory $productCategory): View
     {
-        //
+        return view('product_categories.edit', compact('productCategory'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, ProductCategory $productCategory)
+    public function update(Request $request, ProductCategory $productCategory): RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            'order' => ['required', 'integer'],
+            'name' => ['required', 'string', 'max:255'],
+            'slug' => ['required', 'string', 'max:255', 'unique:product_categories,slug,' . $productCategory->id],
+        ]);
+
+        $productCategory->update($validated);
+
+        return redirect()->route('product-categories.index')->with('success', 'Kategori berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(ProductCategory $productCategory)
+    public function destroy(ProductCategory $productCategory): RedirectResponse
     {
-        //
+        $productCategory->delete();
+
+        return redirect()->route('product-categories.index')->with('success', 'Kategori berhasil dihapus.');
     }
 }
