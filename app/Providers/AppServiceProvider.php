@@ -30,6 +30,10 @@ class AppServiceProvider extends ServiceProvider
 
         Relation::enforceMorphMap(array_flip(config('base.model_morphs')));
 
+        Relation::morphMap([
+        'product' => \App\Models\Product::class,
+        ]);
+
         Model::preventLazyLoading(App::isLocal()); // safe on production
 
         // Paginator::useTailwind(); // or useBootstrapFive();
