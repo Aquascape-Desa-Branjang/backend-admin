@@ -32,4 +32,15 @@ class Product extends Model
         'wholesale_prices' => 'array',
         'retail_price' => 'integer',
     ];
+
+    public function productCategories()
+    {
+        return ProductCategory::whereIn('id', $this->product_category_ids ?? []);
+    }
+
+    public function getProductCategoryModelsAttribute()
+    {
+        return ProductCategory::whereIn('id', $this->product_category_ids ?? [])->get();
+    }
+    
 }

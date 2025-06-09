@@ -4,8 +4,10 @@ namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\ProductResource\Pages;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -48,8 +50,11 @@ class ProductResource extends Resource
                     ->maxLength(255)
                     ->unique(ignoreRecord: true),
 
-                TagsInput::make('product_category_ids')
-                    ->label('Category IDs'),
+                Select::make('product_category_ids')
+                    ->label('Kategori Produk')
+                    ->multiple()
+                    ->options(ProductCategory::all()->pluck('name', 'id'))
+                    ->searchable(),
 
                 FileUpload::make('images')
                     ->multiple()
