@@ -13,6 +13,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use FilamentTiptapEditor\TiptapEditor;
 
@@ -87,11 +88,13 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('order')->label('Urutan')->sortable(),
-                Tables\Columns\TextColumn::make('name')->label('Nama')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('slug')->label('Slug')->searchable(),
-                Tables\Columns\TextColumn::make('created_at')->dateTime('d M Y H:i')->label('Dibuat')->sortable(),
+                TextColumn::make('name')->searchable()->sortable(),
+                TextColumn::make('product_category_ids'),
+                TextColumn::make('retail_price')->money('IDR'),
+                TextColumn::make('slug'),
             ])
+            ->defaultSort('created_at', 'desc')
+            
             ->filters([
                 //
             ])
