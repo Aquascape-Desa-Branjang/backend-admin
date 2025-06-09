@@ -11,6 +11,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::latest()->get();
+
         return response()->json($products);
     }
 
@@ -63,7 +64,7 @@ class ProductController extends Controller
             'product_category_ids' => 'nullable|array',
             'images' => 'required|array',
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:products,slug,' . $product->id,
+            'slug' => 'required|string|max:255|unique:products,slug,'.$product->id,
             'description' => 'required|string',
             'retail_price' => 'nullable|integer|min:0',
             'wholesale_prices' => 'nullable|array',
@@ -87,6 +88,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
+
         return response()->json(['message' => 'Deleted successfully']);
     }
 }

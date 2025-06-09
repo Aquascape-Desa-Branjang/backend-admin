@@ -11,6 +11,7 @@ class Product extends Model
     use HasFactory, HasUlids;
 
     public $incrementing = false; // karena ID-nya bukan auto-increment
+
     protected $keyType = 'string';
 
     protected $fillable = [
@@ -31,5 +32,4 @@ class Product extends Model
         'wholesale_prices' => 'array',
         'retail_price' => 'integer',
     ];
-
 }

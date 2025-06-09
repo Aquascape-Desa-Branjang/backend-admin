@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductCategory;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ProductCategoryController extends Controller
@@ -49,7 +49,7 @@ class ProductCategoryController extends Controller
         $validated = $request->validate([
             'order' => ['required', 'integer'],
             'name' => ['required', 'string', 'max:255'],
-            'slug' => ['required', 'string', 'max:255', 'unique:product_categories,slug,' . $productCategory->id],
+            'slug' => ['required', 'string', 'max:255', 'unique:product_categories,slug,'.$productCategory->id],
         ]);
 
         $productCategory->update($validated);
