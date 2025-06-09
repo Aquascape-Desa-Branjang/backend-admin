@@ -32,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
 
         Relation::morphMap([
             'product_category' => \App\Models\ProductCategory::class,
+            'product' => \App\Models\Product::class,
 
         ]);
 
