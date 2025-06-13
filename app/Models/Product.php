@@ -10,7 +10,7 @@ use Staudenmeir\EloquentJsonRelations\Relations\BelongsToJson;
 
 class Product extends Model
 {
-    use HasFactory, HasUlids, HasJsonRelationships;
+    use HasFactory, HasJsonRelationships, HasUlids;
 
     public $incrementing = false; // karena ID-nya bukan auto-increment
 

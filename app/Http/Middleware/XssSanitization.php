@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Arr;
 
 class XssSanitization
 {
@@ -11,14 +10,13 @@ class XssSanitization
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
         $input = $request->all();
 
-        array_walk_recursive($input, function(&$input) {
+        array_walk_recursive($input, function (&$input) {
             $input = htmlspecialchars($input, ENT_QUOTES, 'UTF-8');
         });
 

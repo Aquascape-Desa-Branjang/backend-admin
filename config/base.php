@@ -34,6 +34,7 @@ return [
     */
 
     'superadmin_email' => 'super@admin.com',
+    'superadmin_username' => '3374071234567890',
 
     'admin_email' => 'admin@admin.com',
 

@@ -14,6 +14,7 @@ class AdminDatabaseSeeder extends Seeder
         if (! $super) {
             $super = Admin::factory()->create([
                 'email' => config('base.superadmin_email'),
+                'username' => config('base.superadmin_username'),
                 'name' => 'Superadmin',
                 'is_active' => true,
             ]);
@@ -21,16 +22,16 @@ class AdminDatabaseSeeder extends Seeder
 
         $super->assignRole('Superadmin');
 
-        $admin = Admin::where('email', config('base.admin_email'))->first();
+        // $admin = Admin::where('email', config('base.admin_email'))->first();
 
-        if (! $admin) {
-            $admin = Admin::factory()->create([
-                'email' => config('base.admin_email'),
-                'name' => 'Admin',
-                'is_active' => true,
-            ]);
-        }
+        // if (! $admin) {
+        //     $admin = Admin::factory()->create([
+        //         'email' => config('base.admin_email'),
+        //         'name' => 'Admin',
+        //         'is_active' => true,
+        //     ]);
+        // }
 
-        $admin->assignRole('Admin');
+        // $admin->assignRole('Admin');
     }
 }

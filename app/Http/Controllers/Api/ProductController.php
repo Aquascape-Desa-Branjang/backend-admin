@@ -13,9 +13,9 @@ class ProductController extends Controller
     public function products(): ApiResponse
     {
         $response = new ApiResponse;
-       $message = 'An error occurred while fetching products';
-       $statusCode = '500';
-       $data = [];
+        $message = 'An error occurred while fetching products';
+        $statusCode = '500';
+        $data = [];
 
         try {
             $data = Product::latest()->with('productCategories')->get();
@@ -29,6 +29,7 @@ class ProductController extends Controller
             $response = $response->error();
 
         }
+
         return $response
             ->title('API Products')
             ->message($message)
@@ -39,9 +40,9 @@ class ProductController extends Controller
     public function productCategories(): ApiResponse
     {
         $response = new ApiResponse;
-       $message = 'An error occurred while fetching product categories';
-       $statusCode = '500';
-       $data = [];
+        $message = 'An error occurred while fetching product categories';
+        $statusCode = '500';
+        $data = [];
 
         try {
             $data = ProductCategory::orderBy('order', 'asc')->get();
@@ -55,6 +56,7 @@ class ProductController extends Controller
             $response = $response->error();
 
         }
+
         return $response
             ->title('API Product Categories')
             ->message($message)

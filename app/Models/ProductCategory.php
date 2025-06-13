@@ -10,7 +10,7 @@ use Staudenmeir\EloquentJsonRelations\Relations\HasManyJson;
 
 class ProductCategory extends Model
 {
-    use HasFactory, HasUlids, HasJsonRelationships;
+    use HasFactory, HasJsonRelationships, HasUlids;
 
     public $incrementing = false;
 

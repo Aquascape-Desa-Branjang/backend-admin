@@ -30,6 +30,7 @@ class Admin extends Authenticatable implements FilamentUser, ModelWithLogActivit
 
     protected $fillable = [
         'name',
+        'username',
         'email',
         'phone',
         // 'password',

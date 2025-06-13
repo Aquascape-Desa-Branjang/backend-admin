@@ -2,8 +2,10 @@
 
 namespace App\Support\FilamentBase\Pages;
 
+use Filament\Forms\Form;
 use Filament\Http\Responses\Auth\Contracts\LoginResponse;
 use Filament\Pages\Auth\Login as BaseComponent;
+use Illuminate\Support\Facades\Auth;
 
 class LoginPage extends BaseComponent
 {
@@ -11,7 +13,11 @@ class LoginPage extends BaseComponent
     {
         $state = $this->form->getState();
 
-        $response = parent::authenticate();
+        // Autentikasi manual berdasarkan username
+            $response = parent::authenticate();
+
+
+        session()->regenerate();
 
         /** @var \App\Models\Main\Admin|null $user */
         $user = filament_user();
@@ -22,9 +28,9 @@ class LoginPage extends BaseComponent
             ->event('Login')
             ->causedBy($user)
             ->withProperties($this->getLogProperties())
-            ->log(__('admin.successfully_login_with_email', ['email' => $state['email']]));
+            ->log(__('admin.successfully_login_with_username', ['username' => $state['username']]));
 
-        return $response;
+        return app(LoginResponse::class);
     }
 
     protected function throwFailureValidationException(): never
@@ -34,7 +40,7 @@ class LoginPage extends BaseComponent
         activity('Authentication')
             ->event('Login')
             ->withProperties($this->getLogProperties())
-            ->log(__('admin.failed_to_login_with_email', ['email' => $state['email']]));
+            ->log(__('admin.failed_to_login_with_username', ['username' => $state['username']]));
 
         parent::throwFailureValidationException();
     }
@@ -44,7 +50,7 @@ class LoginPage extends BaseComponent
         $state = $this->form->getState();
 
         $data = [
-            'email' => $state['email'],
+            'username' => $state['username'],
             'from_ip_address' => request()->ip(),
             'from_user_agent' => request()->userAgent(),
         ];
@@ -57,4 +63,39 @@ class LoginPage extends BaseComponent
 
         return ['attributes' => $data];
     }
+
+    /**
+     * @param  array<string, mixed>  $data
+     * @return array<string, mixed>
+     */
+    protected function getCredentialsFromFormData(array $data): array
+    {
+        return [
+            'username' => $data['username'],
+            'password' => $data['password'],
+        ];
+    }
+
+    // Override field yang ditampilkan di form
+    public function form(Form $form): Form
+{
+    return $form
+        ->schema([
+            \Filament\Forms\Components\TextInput::make('username')
+                ->label('NIK')
+                ->required()
+                ->autofocus()
+                ->autocomplete('username'),
+
+            \Filament\Forms\Components\TextInput::make('password')
+                ->label('Tanggal Lahir')
+                ->password()
+                ->required()
+                ->autocomplete('current-password')
+                ->helperText('Contoh: 17091945'),
+
+            \Filament\Forms\Components\Checkbox::make('remember')
+                ->label('Remember Me'),
+        ]);
+}
 }

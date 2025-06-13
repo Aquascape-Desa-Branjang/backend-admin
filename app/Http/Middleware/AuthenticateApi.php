@@ -22,14 +22,13 @@ class AuthenticateApi
         try {
             $apiKey = $request->header('api-key');
 
-            if (!Hash::check(config('base.api_key'), $apiKey)) {
+            if (! Hash::check(config('base.api_key'), $apiKey)) {
                 throw new \Exception();
             }
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             Log::error('Error Authentication API: ', ['error' => $e->getMessage()]);
 
-            $response =  response()->json(['error' => 'Unauthorized'], 401);
+            $response = response()->json(['error' => 'Unauthorized'], 401);
         }
 
         return $response;
