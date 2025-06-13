@@ -2,8 +2,6 @@
 
 namespace Database\Seeders\Main;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
 use App\Models\Main\Admin;
 use Illuminate\Database\Seeder;
 
@@ -11,17 +9,27 @@ class AdminDatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $super = Admin::factory()->create([
-            'name' => 'Superadmin',
-            'email' => config('base.superadmin_email'),
-        ]);
+        $super = Admin::where('email', config('base.superadmin_email'))->first();
+
+        if (! $super) {
+            $super = Admin::factory()->create([
+                'email' => config('base.superadmin_email'),
+                'name' => 'Superadmin',
+                'is_active' => true,
+            ]);
+        }
 
         $super->assignRole('Superadmin');
 
-        $admin = Admin::factory()->create([
-            'name' => 'Admin',
-            'email' => config('base.admin_email'),
-        ]);
+        $admin = Admin::where('email', config('base.admin_email'))->first();
+
+        if (! $admin) {
+            $admin = Admin::factory()->create([
+                'email' => config('base.admin_email'),
+                'name' => 'Admin',
+                'is_active' => true,
+            ]);
+        }
 
         $admin->assignRole('Admin');
     }

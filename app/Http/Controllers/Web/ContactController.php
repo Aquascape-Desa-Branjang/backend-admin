@@ -25,7 +25,7 @@ class ContactController extends Controller
             'message' => 'required|string',
         ]);
 
-        CreateForm::create($request->all());
+        // CreateForm::create($request->all());
 
         return redirect()->back()->with('success', 'Your message has been sent successfully!');
 
