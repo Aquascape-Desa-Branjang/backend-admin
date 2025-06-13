@@ -5,6 +5,7 @@ namespace App\Filament\Admin\Resources;
 use App\Filament\Admin\Resources\ProductResource\Pages;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Support\FilamentBase\Forms\ImageUpload;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
@@ -12,9 +13,11 @@ use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Support\RawJs;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use App\Support\FilamentBase;
 use FilamentTiptapEditor\TiptapEditor;
 
 class ProductResource extends Resource
@@ -42,45 +45,81 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')
+                 FilamentBase\Forms\CustomFileUpload::make('image', 'image', 'image')
                     ->required()
-                    ->maxLength(255),
-
-                TextInput::make('slug')
-                    ->required()
-                    ->maxLength(255)
-                    ->unique(ignoreRecord: true),
+                    ->label('Gambar Produk')
+                    ->maxSize(2048)
+                    ->columnSpanFull()
+                    ->helperText('Rasio 1:1, Ukuran maksimal 2mb"'),
 
                 Select::make('product_category_ids')
                     ->label('Kategori Produk')
-                    ->multiple()
-                    ->options(ProductCategory::all()->pluck('name', 'id'))
-                    ->searchable(),
+                    ->columnSpanFull()
+                    ->options(function () {
+                        return ProductCategory::pluck('name', 'id')->toArray();
+                    })
+                    ->searchable()
+                    ->multiple(),
 
-                FileUpload::make('images')
-                    ->multiple()
+                TextInput::make('name')
+                    ->label('Nama Produk')
                     ->required()
-                    ->image(),
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(fn ($state, $set) => $set('slug', str($state)->slug()))
+                    ->maxLength(255),
 
-                TiptapEditor::make('description')
-                    ->required(),
+                TextInput::make('slug')
+                    ->label('Slug (URL Produk)')
+                    ->required()
+                    ->maxLength(255)
+                    ->formatStateUsing(fn ($state) => str($state)->slug())
+                    ->dehydrateStateUsing(fn ($state) => str($state)->slug())
+                    ->unique(ignoreRecord: true)
+                    ->helperText('Slug unik, misalnya "elektronik-pribadi"'),
+
+                \FilamentTiptapEditor\TiptapEditor::make('description')
+                    ->label('Deskripsi Produk')
+                    ->columnSpanFull()
+                    ->profile('page')
+                    ->required()
+                    ->disk('public')
+                    ->directory('uploads')
+                    ->acceptedFileTypes(['image/jpg', 'image/jpeg', 'image/png'])
+                    ->maxFileSize(2048)
+                    ->extraInputAttributes(['style' => 'min-height: 320px;']),
+
 
                 TextInput::make('retail_price')
-                    ->numeric()
-                    ->prefix('Rp')
-                    ->suffix('.00'),
+                    ->label('Harga Eceran')
+                    ->prefix('Rp.')
+                    ->default(0)
+                    ->minValue(0)
+                    ->mask(RawJs::make('$money($input, \',\', \'.\')'))
+                    ->stripCharacters([',', '.', ' '])
+                    ->numeric(),
+
+                TextInput::make('shopee_link')
+                    ->label('Link Shopee')
+                    ->placeholder('https://shopee.co.id/produk-anda')
+                    ->url()
+                    ->maxLength(255),
 
                 Repeater::make('wholesale_prices')
+                    ->label('Harga Grosir')
+                    ->columnSpanFull()
                     ->schema([
                         TextInput::make('min_qty')->numeric()->required(),
-                        TextInput::make('price')->numeric()->required()->prefix('Rp'),
+                        TextInput::make('price')
+                            ->prefix('Rp.')
+                            ->required()
+                            ->default(0)
+                            ->minValue(0)
+                            ->mask(RawJs::make('$money($input, \',\', \'.\')'))
+                            ->stripCharacters([',', '.', ' '])
+                            ->numeric(),
                     ])
                     ->label('Wholesale Prices'),
 
-                TextInput::make('shopee_link')
-                    ->label('Shopee Link')
-                    ->url()
-                    ->maxLength(255),
             ]);
     }
 
@@ -88,13 +127,14 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('image')
+                        ->height(75)
+                        ->width('100%'),
                 TextColumn::make('name')->searchable()->sortable(),
-                TextColumn::make('product_category_ids'),
-                TextColumn::make('retail_price')->money('IDR'),
-                TextColumn::make('slug'),
+                TextColumn::make('created_at')->dateTime('d M Y H:i')->label('Dibuat')->sortable(),
             ])
             ->defaultSort('created_at', 'desc')
-            
+
             ->filters([
                 //
             ])

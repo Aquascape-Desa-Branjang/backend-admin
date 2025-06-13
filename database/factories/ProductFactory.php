@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\ProductCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -21,15 +22,8 @@ class ProductFactory extends Factory
 
         return [
             'id' => Str::ulid()->toBase32(),
-            'product_category_ids' => $this->faker->randomElements([
-                '01hx8kq32kefyye2g89j4k52f0', // contoh ID kategori
-                '01hx8kq45r3vwdtdfkmzdksq30',
-                '01hx8kq5y3sct6yffsdzrv9m9d',
-            ], rand(1, 2)), // bisa satu atau dua kategori
-            'images' => [
-                $this->faker->imageUrl(640, 480, 'products', true),
-                $this->faker->imageUrl(640, 480, 'products', true),
-            ],
+            'product_category_ids' => $this->faker->randomElements(ProductCategory::pluck('id'), rand(1, 4)), // bisa satu atau dua kategori
+            'image' => 'static/gentong.jpg',
             'name' => $name,
             'slug' => Str::slug($name),
             'description' => $this->faker->paragraphs(3, true),

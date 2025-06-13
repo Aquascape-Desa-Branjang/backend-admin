@@ -21,7 +21,7 @@ class ProductCategoryFactory extends Factory
 
         return [
             'id' => (string) Str::ulid(),
-            'order' => $this->faker->numberBetween(1, 10),
+            'order' => $this->faker->unique()->numberBetween(1, 10),
             'name' => $name,
             'slug' => Str::slug($name),
         ];

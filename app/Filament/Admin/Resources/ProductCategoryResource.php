@@ -40,13 +40,6 @@ class ProductCategoryResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('order')
-                    ->numeric()
-                    ->required()
-                    ->minValue(1)
-                    ->maxValue(255)
-                    ->label('Urutan'),
-
                 TextInput::make('name')
                     ->required()
                     ->maxLength(255)
@@ -57,17 +50,18 @@ class ProductCategoryResource extends Resource
                     ->maxLength(255)
                     ->label('Slug')
                     ->unique(ProductCategory::class, 'slug', ignoreRecord: true)
-                    ->helperText('Slug unik, misalnya "elektronik"'),
+                    ->helperText('Slug unik, misalnya "elektronik-pribadi"'),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+            ->reorderable('order')
+            ->defaultSort('order', 'asc')
             ->columns([
                 TextColumn::make('order')->label('Urutan')->sortable(),
                 TextColumn::make('name')->label('Nama')->searchable()->sortable(),
-                TextColumn::make('slug')->label('Slug')->searchable(),
                 TextColumn::make('created_at')->dateTime('d M Y H:i')->label('Dibuat')->sortable(),
             ])
             ->filters([

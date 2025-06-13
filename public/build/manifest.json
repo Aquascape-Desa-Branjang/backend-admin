@@ -1,6 +1,6 @@
 {
   "resources/css/filament-base-theme.css": {
-    "file": "assets/filament-base-theme-RMPzhrc5.css",
+    "file": "assets/filament-base-theme-LqEco-G9.css",
     "isEntry": true,
     "src": "resources/css/filament-base-theme.css"
   },
@@ -15,7 +15,7 @@
     "src": "resources/js/filament-base-theme.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-LlSwG57H.css",
+    "file": "assets/app-CQ_wfkT5.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   }

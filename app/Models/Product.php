@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Staudenmeir\EloquentJsonRelations\Relations\BelongsToJson;
 
 class Product extends Model
 {
@@ -17,7 +19,7 @@ class Product extends Model
     protected $fillable = [
         'id',
         'product_category_ids',
-        'images',
+        'image',
         'name',
         'slug',
         'description',
@@ -27,20 +29,25 @@ class Product extends Model
     ];
 
     protected $casts = [
-        'product_category_ids' => 'array',
+        'product_category_ids' => 'json',
         'images' => 'array',
         'wholesale_prices' => 'array',
         'retail_price' => 'integer',
     ];
 
-    public function productCategories()
-    {
-        return ProductCategory::whereIn('id', $this->product_category_ids ?? []);
-    }
-
     public function getProductCategoryModelsAttribute()
     {
         return ProductCategory::whereIn('id', $this->product_category_ids ?? [])->get();
     }
-    
+
+    /**
+     * Get the productCategory that owns the Product
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function productCategories(): BelongsToJson
+    {
+        return $this->belongsToJson(ProductCategory::class, 'product_category_ids');
+    }
+
 }

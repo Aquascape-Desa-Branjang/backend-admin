@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('product_categories', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->tinyInteger('order');
+            $table->tinyInteger('order')->default(0);
             $table->string('name', 255);
             $table->string('slug', 255)->unique();
             $table->timestamps();
