@@ -5,11 +5,9 @@ namespace App\Filament\Admin\Resources;
 use App\Filament\Admin\Resources\ProductResource\Pages;
 use App\Models\Product;
 use App\Models\ProductCategory;
-use App\Support\FilamentBase\Forms\ImageUpload;
-use Filament\Forms\Components\FileUpload;
+use App\Support\FilamentBase;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -17,8 +15,6 @@ use Filament\Support\RawJs;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use App\Support\FilamentBase;
-use FilamentTiptapEditor\TiptapEditor;
 
 class ProductResource extends Resource
 {
@@ -45,7 +41,7 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                 FilamentBase\Forms\CustomFileUpload::make('image', 'image', 'image')
+                FilamentBase\Forms\CustomFileUpload::make('image', 'image', 'image')
                     ->required()
                     ->label('Gambar Produk')
                     ->maxSize(2048)
@@ -88,7 +84,6 @@ class ProductResource extends Resource
                     ->maxFileSize(2048)
                     ->extraInputAttributes(['style' => 'min-height: 320px;']),
 
-
                 TextInput::make('retail_price')
                     ->label('Harga Eceran')
                     ->prefix('Rp.')
@@ -128,8 +123,8 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('image')
-                        ->height(75)
-                        ->width('100%'),
+                    ->height(75)
+                    ->width('100%'),
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('created_at')->dateTime('d M Y H:i')->label('Dibuat')->sortable(),
             ])

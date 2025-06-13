@@ -31,10 +31,12 @@ class Kernel extends HttpKernel
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\XssSanitization::class,
         ],
     ];
 
     protected $middlewareAliases = [
+        'auth.api' => \App\Http\Middleware\AuthenticateApi::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.filament' => \App\Http\Middleware\AuthenticateFilament::class,

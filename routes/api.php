@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\MiscApiController;
+use App\Http\Controllers\Api\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,8 @@ Route::get('/ping', [MiscApiController::class, 'ping'])
 | Api Extra
 |--------------------------------------------------------------------------
 */
+
+Route::controller(ProductController::class)->group(function () {
+    Route::get('/products', 'products');
+    Route::get('/product-categories', 'productCategories');
+});

@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Staudenmeir\EloquentJsonRelations\HasJsonRelationships;
 use Staudenmeir\EloquentJsonRelations\Relations\BelongsToJson;
 
 class Product extends Model
 {
-    use HasFactory, HasUlids;
+    use HasFactory, HasUlids, HasJsonRelationships;
 
     public $incrementing = false; // karena ID-nya bukan auto-increment
 
@@ -49,5 +49,4 @@ class Product extends Model
     {
         return $this->belongsToJson(ProductCategory::class, 'product_category_ids');
     }
-
 }

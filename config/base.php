@@ -89,6 +89,8 @@ return [
         ],
     ],
 
+    'api_key' => env('API_KEY', 'password'),
+
     /*
     |--------------------------------------------------------------------------
     | Lookup
@@ -104,15 +106,6 @@ return [
         \App\Models\Main\Admin::class => 'Admin',
         \App\Models\Main\User::class => 'User',
         \Spatie\TranslationLoader\LanguageLine::class => 'Language',
-        \App\Models\CreateForm::class => 'Create Form',
-        \App\Models\Milestone::class => 'Milestone',
-        \App\Models\OurService::class => 'Our Service',
-        \App\Models\Image::class => 'Image',
-        \App\Models\OurValue::class => 'Our Value',
-        \App\Models\Client::class => 'Client',
-        \App\Models\CareerFilter::class => 'Career Filter',
-        \App\Models\EProcurement::class => 'E-Procurement',
-        \App\Models\Career::class => 'Career',
     ],
 
     'model_policies' => [
