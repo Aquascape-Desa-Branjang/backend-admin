@@ -3,19 +3,15 @@
 namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\ArticleResource\Pages;
-use App\Filament\Admin\Resources\ArticleResource\RelationManagers;
 use App\Models\Article;
+use App\Support\FilamentBase;
 use Filament\Forms;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Table;
-Use App\Support\FilamentBase;
-use Filament\Forms\Components\TextInput;
-use Filament\Support\RawJs;
 use Filament\Tables\Columns\TextColumn;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Table;
 
 class ArticleResource extends Resource
 {
@@ -76,7 +72,7 @@ class ArticleResource extends Resource
                             ->maxFileSize(2048)
                             ->extraInputAttributes(['style' => 'min-height: 320px;']),
 
-                    ])
+                    ]),
             ]);
     }
 
@@ -87,7 +83,7 @@ class ArticleResource extends Resource
                 Tables\Columns\ImageColumn::make('image')
                     ->height(75)
                     ->width('100%'),
-                TextColumn::make('name')->searchable()->sortable(),
+                TextColumn::make('title')->searchable()->sortable(),
                 TextColumn::make('created_at')->dateTime('d M Y H:i')->label('Dibuat')->sortable(),
             ])
             ->defaultSort('created_at', 'desc')
