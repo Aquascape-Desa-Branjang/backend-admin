@@ -72,6 +72,7 @@ class AdminPanelProvider extends PanelProvider
             if ($panel->getId() == 'admin') {
                 //
                 $panel->navigationGroups([
+                    'Artikel',
                     'Produk',
                     __('permission.access'),
                     __('permission.system'),
