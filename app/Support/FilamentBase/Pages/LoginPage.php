@@ -5,7 +5,6 @@ namespace App\Support\FilamentBase\Pages;
 use Filament\Forms\Form;
 use Filament\Http\Responses\Auth\Contracts\LoginResponse;
 use Filament\Pages\Auth\Login as BaseComponent;
-use Illuminate\Support\Facades\Auth;
 
 class LoginPage extends BaseComponent
 {
@@ -14,8 +13,7 @@ class LoginPage extends BaseComponent
         $state = $this->form->getState();
 
         // Autentikasi manual berdasarkan username
-            $response = parent::authenticate();
-
+        $response = parent::authenticate();
 
         session()->regenerate();
 
@@ -78,24 +76,24 @@ class LoginPage extends BaseComponent
 
     // Override field yang ditampilkan di form
     public function form(Form $form): Form
-{
-    return $form
-        ->schema([
-            \Filament\Forms\Components\TextInput::make('username')
-                ->label('NIK')
-                ->required()
-                ->autofocus()
-                ->autocomplete('username'),
+    {
+        return $form
+            ->schema([
+                \Filament\Forms\Components\TextInput::make('username')
+                    ->label('NIK')
+                    ->required()
+                    ->autofocus()
+                    ->autocomplete('username'),
 
-            \Filament\Forms\Components\TextInput::make('password')
-                ->label('Tanggal Lahir')
-                ->password()
-                ->required()
-                ->autocomplete('current-password')
-                ->helperText('Contoh: 17091945'),
+                \Filament\Forms\Components\TextInput::make('password')
+                    ->label('Tanggal Lahir')
+                    ->password()
+                    ->required()
+                    ->autocomplete('current-password')
+                    ->helperText('Contoh: 17091945'),
 
-            \Filament\Forms\Components\Checkbox::make('remember')
-                ->label('Remember Me'),
-        ]);
-}
+                \Filament\Forms\Components\Checkbox::make('remember')
+                    ->label('Remember Me'),
+            ]);
+    }
 }

@@ -15,6 +15,7 @@
     "calebporzio/sushi": "^2.4",
     "filament/filament": "^3.1",
     "filipfonal/filament-log-manager": "^2.0",
+    "flowframe/laravel-trend": "^0.4.0",
     "guzzlehttp/guzzle": "^7.2",
     "kenepa/translation-manager": "^4.0",
     "kodepandai/laravel-api-response": "dev-next",
