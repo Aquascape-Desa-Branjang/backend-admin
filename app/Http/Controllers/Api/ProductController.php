@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Log;
 use KodePandai\ApiResponse\ApiResponse;
 
@@ -63,4 +64,28 @@ class ProductController extends Controller
             ->statusCode($statusCode)
             ->data($data);
     }
+
+   public function catalog()
+{
+    try {
+        $products = Product::with('productCategories')->get();
+
+        $pdf = Pdf::loadView('pdf.katalog', compact('products'));
+
+        $pdf = $pdf->setOption('isRemoteEnabled', true)
+                   ->setOption('isHtml5ParserEnabled', true)
+                   ->setOption('isPhpEnabled', true)
+                   ->setPaper('A4', 'portrait');
+
+        return $pdf->stream('Katalog-Produk-Anto-Aquarium-Art-' . uniqid() . '.pdf');
+
+    } catch (\Exception $e) {
+        Log::error('Error generating product catalog PDF', ['error' => $e->getMessage()]);
+
+        return response()->json([
+            'message' => 'An error occurred while generating catalog PDF',
+            'error' => $e->getMessage(),
+        ], 500);
+    }
+}
 }

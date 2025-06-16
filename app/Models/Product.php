@@ -36,6 +36,11 @@ class Product extends Model
         'retail_price' => 'integer',
     ];
 
+    public function getUrlImageAttribute()
+    {
+        return $this->image ? storage_url($this->image) : null;
+    }
+
     public function getProductCategoryModelsAttribute(): Collection
     {
         return ProductCategory::whereIn('id', $this->product_category_ids ?? [])->get();

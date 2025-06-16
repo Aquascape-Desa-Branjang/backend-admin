@@ -23,7 +23,7 @@ class ProductFactory extends Factory
         return [
             'id' => Str::ulid()->toBase32(),
             'product_category_ids' => $this->faker->randomElements(ProductCategory::pluck('id'), rand(1, 4)), // bisa satu atau dua kategori
-            'image' => 'static/gentong.jpg',
+            'image' => 'static/gentong.webp',
             'name' => $name,
             'slug' => Str::slug($name),
             'description' => $this->faker->paragraphs(3, true),

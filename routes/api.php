@@ -25,4 +25,5 @@ Route::get('/ping', [MiscApiController::class, 'ping'])
 Route::controller(ProductController::class)->group(function () {
     Route::get('/products', 'products');
     Route::get('/product-categories', 'productCategories');
+    Route::get('/products/catalog', 'catalog');
 });
