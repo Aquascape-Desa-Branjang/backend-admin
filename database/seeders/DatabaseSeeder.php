@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(Main\MasterDatabaseSeeder::class);
         $this->call(ProductCategorySeeder::class);
         $this->call(ProductSeeder::class);
+        $this->call(SalesSeeder::class);
 
         activity()->enableLogging();
 
