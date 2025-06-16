@@ -17,8 +17,8 @@ use Illuminate\Support\Collection;
 class RoleResource extends Resource
 {
     protected static ?string $model = Role::class;
-    protected static bool $shouldRegisterNavigation = false;
 
+    protected static bool $shouldRegisterNavigation = false;
 
     protected static ?string $slug = 'roles';
 

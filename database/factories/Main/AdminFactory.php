@@ -16,7 +16,7 @@ class AdminFactory extends Factory
         return [
             'id' => strtolower(Str::ulid()),
             'name' => fake()->name(),
-            'username' => '337407' . fake()->unique()->numberBetween(1000000, 9999999),
+            'username' => '337407'.fake()->unique()->numberBetween(1000000, 9999999),
             'email' => fake()->unique()->safeEmail(),
             'phone' => fake()->e164PhoneNumber(),
             'password' => Hash::make('17091945'),

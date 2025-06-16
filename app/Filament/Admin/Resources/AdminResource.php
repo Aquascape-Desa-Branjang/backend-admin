@@ -16,6 +16,7 @@ use Illuminate\Validation\Rules\Password;
 class AdminResource extends Resource
 {
     protected static ?string $model = Admin::class;
+
     protected static bool $shouldRegisterNavigation = false;
 
     protected static ?string $slug = 'admins';

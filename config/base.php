@@ -107,6 +107,7 @@ return [
         \App\Models\Main\Admin::class => 'Admin',
         \App\Models\Main\User::class => 'User',
         \Spatie\TranslationLoader\LanguageLine::class => 'Language',
+        App\Models\Sales::class => 'Sales',
     ],
 
     'model_policies' => [
