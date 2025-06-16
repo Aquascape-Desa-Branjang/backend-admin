@@ -99,22 +99,6 @@ class ProductResource extends Resource
                     ->url()
                     ->maxLength(255),
 
-                Repeater::make('wholesale_prices')
-                    ->label('Harga Grosir')
-                    ->columnSpanFull()
-                    ->schema([
-                        TextInput::make('min_qty')->numeric()->required(),
-                        TextInput::make('price')
-                            ->prefix('Rp.')
-                            ->required()
-                            ->default(0)
-                            ->minValue(0)
-                            ->mask(RawJs::make('$money($input, \',\', \'.\')'))
-                            ->stripCharacters([',', '.', ' '])
-                            ->numeric(),
-                    ])
-                    ->label('Wholesale Prices'),
-
             ]);
     }
 

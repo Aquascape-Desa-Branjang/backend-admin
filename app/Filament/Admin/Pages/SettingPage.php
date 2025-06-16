@@ -74,18 +74,18 @@ class SettingPage extends Page implements HasForms
     public function getSubNavigation(): array
     {
         return [
-            // NavigationItem::make(__('admin.app'))
-            //     ->icon('heroicon-o-cpu-chip')
-            //     ->url(SettingPageForApp::getUrl())
-            //     ->isActiveWhen(fn () => static::class == SettingPageForApp::class),
+            NavigationItem::make(__('admin.app'))
+                ->icon('heroicon-o-cpu-chip')
+                ->url(SettingPageForApp::getUrl())
+                ->isActiveWhen(fn () => static::class == SettingPageForApp::class),
             // NavigationItem::make(__('admin.site'))
             //     ->icon('heroicon-o-globe-asia-australia')
             //     ->url(SettingPageForSiteNavbar::getUrl())
             //     ->isActiveWhen(fn () => static::class == SettingPageForSiteNavbar::class),
-            // NavigationItem::make('Contents')
-            //     ->icon('heroicon-o-rectangle-stack')
-            //     ->url(SettingPageForContentHome::getUrl())
-            //     ->isActiveWhen(fn () => static::class == SettingPageForContentHome::class),
+            NavigationItem::make('Contents')
+                ->icon('heroicon-o-rectangle-stack')
+                ->url(SettingPageForContentProduct::getUrl())
+                ->isActiveWhen(fn () => static::class == SettingPageForContentProduct::class),
         ];
     }
 
